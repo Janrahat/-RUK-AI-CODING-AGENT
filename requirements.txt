@@ -1,0 +1,1 @@
+requests>=2.31.0\nrich>=13.7.0\n
