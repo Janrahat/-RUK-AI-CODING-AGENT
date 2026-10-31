@@ -43,7 +43,7 @@ def execute_tool(name, args):
         if name == "list_files":
             p = safe_path(args.get("path", "."))
             if not p.exists(): return "Path does not exist."
-            return "\\n".join(str(x.relative_to(ROOT)) + ("/" if x.is_dir() else "") for x in sorted(p.iterdir()))
+            return "\n".join(str(x.relative_to(ROOT)) + ("/" if x.is_dir() else "") for x in sorted(p.iterdir()))
         if name == "read_file":
             p = safe_path(args["path"])
             if not p.is_file(): return "File not found."
@@ -61,13 +61,13 @@ def execute_tool(name, args):
             parts = shlex.split(cmd)
             if not parts or parts[0] not in ALLOWED:
                 return "Blocked: command is not on the safe allowlist. Allowed: " + ", ".join(sorted(ALLOWED))
-            if any(x in cmd for x in (";", "&&", "||", "|", ">", "<", "`", "$(", "\\n")):
+            if any(x in cmd for x in (";", "&&", "||", "|", ">", "<", "`", "$(", "\n")):
                 return "Blocked: shell chaining, redirection and substitutions are disabled."
-            console.print(Panel(f"[bold yellow]Requested command:[/bold yellow]\\n{cmd}\\n\\nWorking directory: {ROOT}"))
+            console.print(Panel(f"[bold yellow]Requested command:[/bold yellow]\n{cmd}\n\nWorking directory: {ROOT}"))
             if not Confirm.ask("Run this command?"):
                 return "User denied command."
             result = subprocess.run(parts, cwd=ROOT, text=True, capture_output=True, timeout=120)
-            return f"exit_code={result.returncode}\\nSTDOUT:\\n{result.stdout[-12000:]}\\nSTDERR:\\n{result.stderr[-6000:]}"
+            return f"exit_code={result.returncode}\nSTDOUT:\n{result.stdout[-12000:]}\nSTDERR:\n{result.stderr[-6000:]}"
         return "Unknown tool."
     except Exception as e:
         return f"Tool error: {type(e).__name__}: {e}"
@@ -84,15 +84,15 @@ def ask(messages):
     return response.json()["choices"][0]["message"]
 
 def main():
-    console.print(Panel.fit("[bold gold1]RUK AI CODING AGENT[/bold gold1]\\n[cyan]Android / Termux Edition[/cyan]\\nPermission-first coding assistant", border_style="yellow"))
+    console.print(Panel.fit("[bold gold1]RUK AI CODING AGENT[/bold gold1]\n[cyan]Android / Termux Edition[/cyan]\nPermission-first coding assistant", border_style="yellow"))
     if not API_KEY:
-        console.print("[red]RUK_API_KEY is not set.[/red]\\nSet it with: export RUK_API_KEY='your-api-key'")
+        console.print("[red]RUK_API_KEY is not set.[/red]\nSet it with: export RUK_API_KEY='your-api-key'")
         return
-    console.print(f"Workspace: [green]{ROOT}[/green]\\nModel: [cyan]{MODEL}[/cyan]\\nType /exit to quit, /clear to reset.")
+    console.print(f"Workspace: [green]{ROOT}[/green]\nModel: [cyan]{MODEL}[/cyan]\nType /exit to quit, /clear to reset.")
     messages = [{"role":"system","content":SYSTEM}]
     while True:
         try:
-            prompt = Prompt.ask("\\n[bold green]RUK[/bold green]")
+            prompt = Prompt.ask("\n[bold green]RUK[/bold green]")
             if prompt.strip() == "/exit": break
             if prompt.strip() == "/clear":
                 messages = [{"role":"system","content":SYSTEM}]
@@ -117,7 +117,7 @@ def main():
             else:
                 console.print("[yellow]Stopped after 8 tool steps for safety.[/yellow]")
         except KeyboardInterrupt:
-            console.print("\\n[yellow]Interrupted.[/yellow]")
+            console.print("\n[yellow]Interrupted.[/yellow]")
         except Exception as e:
             console.print(f"[red]Error:[/red] {e}")
 
