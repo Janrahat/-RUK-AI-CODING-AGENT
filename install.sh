@@ -2,7 +2,7 @@
 set -e
 pkg update -y
 pkg install -y python git
-python -m pip install --upgrade pip
+# Termux manages its own pip; do not try to upgrade pip itself.
 python -m pip install -r requirements.txt
 mkdir -p workspace
 echo
