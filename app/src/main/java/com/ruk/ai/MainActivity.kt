@@ -90,7 +90,7 @@ private fun RukLogo(modifier: Modifier = Modifier, size: androidx.compose.ui.uni
 @Composable
 private fun RukAiApp() {
     var page by remember { mutableStateOf(Page.HOME) }
-    var apiBase by remember { mutableStateOf("http://10.0.2.2:8000") }
+    var apiBase by remember { mutableStateOf("https://your-ruk-ai-server.com") }
     var token by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
