@@ -1,0 +1,63 @@
+name: Backend tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend-tests.yml"
+  pull_request:
+    paths:
+      - "backend/**"
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: pytest (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: backend/requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Run the test suite
+        env:
+          DATABASE_URL: sqlite+aiosqlite:///./ci.db
+          JWT_SECRET: ci-secret-not-used-in-production
+          TOKEN_ENCRYPTION_KEY: ci-encryption-passphrase
+          ENVIRONMENT: test
+          CODE_EXEC_ENABLED: "true"
+        run: python -m pytest tests -q
+
+      - name: Verify the app imports and serves /health
+        env:
+          DATABASE_URL: sqlite+aiosqlite:///./ci.db
+          JWT_SECRET: ci-secret-not-used-in-production
+          TOKEN_ENCRYPTION_KEY: ci-encryption-passphrase
+        run: |
+          python -c "
+          from fastapi.testclient import TestClient
+          from app.main import create_app
+          with TestClient(create_app()) as client:
+              body = client.get('/health').json()
+              assert body['status'] == 'ok', body
+              print('health:', body)
+          "

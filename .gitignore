@@ -1,1 +1,100 @@
-.env\n__pycache__/\n.venv/\nworkspace/*\n!workspace/.gitkeep\n
+# ---------------------------------------------------------------------------
+# Android / Gradle
+# ---------------------------------------------------------------------------
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+app/build/
+app/release/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+output.json
+release/
+
+# Keystores — never commit signing material
+*.jks
+*.keystore
+keystore.properties
+
+# ---------------------------------------------------------------------------
+# Python / backend
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.python-version
+
+# Test and coverage artefacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+
+# ---------------------------------------------------------------------------
+# Secrets and local configuration — these must never be committed
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+config.local.json
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+ci.db
+
+# ---------------------------------------------------------------------------
+# Editors and OS
+# ---------------------------------------------------------------------------
+.vscode/
+*.swp
+*.swo
+*~
+.idea/
+Thumbs.db
+desktop.ini
