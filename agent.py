@@ -76,7 +76,7 @@ def ask(messages):
     response = requests.post(
         BASE_URL + "/chat/completions",
         headers={"Authorization": f"Bearer {API_KEY}", "Content-Type":"application/json"},
-        json={"model":MODEL, "messages":messages, "tools":TOOLS, "tool_choice":"auto", "temperature":0.2},
+        json={"model":MODEL, "messages":messages, "tools":TOOLS, "tool_choice":"auto", "temperature":0.2, "max_tokens":4096},
         timeout=90
     )
     if not response.ok:
