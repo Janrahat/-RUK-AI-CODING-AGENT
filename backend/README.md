@@ -1,5 +1,7 @@
 # RUK AI backend
 
+Requires Python 3.10 or newer.
+
 FastAPI service used by the RUK AI Android client.
 
 ## Quick start
