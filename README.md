@@ -14,7 +14,7 @@ A lightweight, terminal-based AI coding assistant for Android/Termux. It uses an
 pkg update -y
 pkg install -y git python
 git clone https://github.com/Janrahat/-RUK-AI-CODING-AGENT.git
-cd -RUK-AI-CODING-AGENT
+cd -- -RUK-AI-CODING-AGENT
 bash install.sh
 ```
 
