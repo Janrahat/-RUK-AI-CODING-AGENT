@@ -47,3 +47,22 @@ This is a starter agent, not an unrestricted autonomous computer operator. It bl
 - Tool calls unsupported: choose a model/provider that supports tool calling.
 - API quota/billing error: check the provider's account limits; installing this project does not include free API credits.
 - `ModuleNotFoundError`: run `python -m pip install -r requirements.txt`.
+
+
+## Android app (new)
+
+A native Kotlin + Jetpack Compose Android client is available in the `app/` folder.
+It currently provides a chat interface for OpenAI-compatible providers (including OpenRouter).
+
+### Build APK with GitHub Actions
+1. Open the repository's **Actions** tab.
+2. Select **Build Android APK**.
+3. Choose **Run workflow** and run it on `main`.
+4. When the run succeeds, open it and download the `ruk-ai-debug-apk` artifact.
+5. Extract the artifact ZIP to get `app-debug.apk`, then install it on your Android phone.
+
+### Important
+- This Android app is an initial native chat client, not yet a full port of the Python terminal agent's local file tools, command runner, or GitHub automation.
+- Enter your provider's API key in the app at runtime. The key is kept in memory only and is not saved to disk by this starter version.
+- Use a valid provider base URL and model, e.g. OpenRouter base URL `https://openrouter.ai/api/v1`. Provider usage may incur charges.
+- Never commit API keys or paste them into screenshots.
