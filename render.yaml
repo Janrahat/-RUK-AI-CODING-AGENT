@@ -1,0 +1,34 @@
+# RUK AI API — Render Blueprint
+# Connect this repository in Render and create the Blueprint from this file.
+# Set DATABASE_URL and TOKEN_ENCRYPTION_KEY in the Render dashboard.
+services:
+  - type: web
+    name: ruk-ai-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: TOKEN_ENCRYPTION_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: CODE_EXEC_ENABLED
+        value: "false"
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FAL_API_KEY
+        sync: false
