@@ -33,16 +33,8 @@ def _engine_kwargs() -> dict:
     return {"pool_pre_ping": True, "pool_size": 10, "max_overflow": 20}
 
 
-# Render and several managed PostgreSQL providers expose a generic postgres://
-# or postgresql:// URL. This app uses SQLAlchemy's async driver explicitly.
-database_url = settings.database_url
-if database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
-elif database_url.startswith("postgresql://"):
-    database_url = database_url.replace("postgresql://", "postgresql+asyncpg://", 1)
-
 engine = create_async_engine(
-    database_url,
+    settings.database_url,
     echo=settings.db_echo,
     future=True,
     **_engine_kwargs(),
