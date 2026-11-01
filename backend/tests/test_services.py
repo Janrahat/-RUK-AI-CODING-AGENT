@@ -7,7 +7,7 @@ import asyncio
 import pytest
 
 from app.ratelimit import RateLimiter
-from app.services import code_runner
+from app.services import code_runner, providers
 from app.services.code_runner import ExecutionError, available_languages, run_code
 
 
@@ -158,3 +158,14 @@ class TestCodeRunner:
         asyncio.run(run_code("python", "print('x')"))
         after = set(glob.glob(f"{tempfile.gettempdir()}/rukai-run-*"))
         assert after == before
+
+
+class TestProviderRouting:
+    def test_openrouter_qualified_default_model_uses_openrouter(self):
+        spec = providers.resolve_provider("openai/gpt-4o-mini")
+        assert spec.name == "openrouter"
+        assert "openai/gpt-4o-mini" in spec.chat_models
+
+    def test_unqualified_openai_model_does_not_silently_use_openrouter(self):
+        spec = providers.resolve_provider("gpt-4o-mini")
+        assert spec.name == "openai"
