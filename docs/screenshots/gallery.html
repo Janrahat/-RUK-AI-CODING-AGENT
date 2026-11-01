@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RUK AI — UI/UX Mockups</title>
+<style>
+:root {
+  --black: #000000;
+  --navy: #0A0E1A;
+  --surface: #12121A;
+  --surface-border: #2A2A38;
+  --purple: #7C3AED;
+  --purple-light: #9B5DE5;
+  --white: #FFFFFF;
+  --grey: #A0A0A0;
+  --grey-dim: #6B6B7B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+html, body {
+  background: #05050A;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'DejaVu Sans', sans-serif;
+  color: var(--white);
+}
+body {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(124,58,237,.20) 0%, transparent 42%),
+    radial-gradient(circle at 88% 8%, rgba(34,211,238,.10) 0%, transparent 38%),
+    #05050A;
+  min-height: 100vh;
+  padding: 0 0 90px;
+}
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+
+header { padding: 74px 0 54px; text-align: center; }
+.brandline { display: inline-flex; align-items: center; gap: 11px; margin-bottom: 26px; }
+.brandline img { width: 40px; height: 40px; border-radius: 11px; display: block; }
+.brandline .name { font-size: 15px; font-weight: 800; letter-spacing: .6px; }
+
+h1 {
+  font-size: clamp(38px, 6vw, 62px);
+  font-weight: 800;
+  letter-spacing: -1.6px;
+  line-height: 1.04;
+  margin: 0 auto;
+  max-width: 15ch;
+}
+.sub { margin: 20px auto 0; max-width: 62ch; font-size: 15px; line-height: 1.65; color: #9A9AAC; }
+.meta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; }
+.tag {
+  font-size: 11.5px; font-weight: 600;
+  padding: 7px 13px; border-radius: 50px;
+  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(124,58,237,.28);
+  color: #C4B5FD;
+}
+.tag.dim { background: rgba(255,255,255,.035); border-color: rgba(255,255,255,.09); color: #9A9AAC; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(384px, 1fr));
+  gap: 52px 40px;
+  padding-top: 10px;
+}
+.item { display: flex; flex-direction: column; align-items: center; }
+
+.shot {
+  position: relative;
+  border-radius: 30px;
+  padding: 9px;
+  background: linear-gradient(155deg, rgba(124,58,237,.42) 0%, rgba(255,255,255,.055) 46%, rgba(34,211,238,.22) 100%);
+  box-shadow: 0 30px 90px -28px rgba(124,58,237,.55), 0 0 0 1px rgba(255,255,255,.045);
+  transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s;
+}
+.shot:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 40px 110px -26px rgba(124,58,237,.72), 0 0 0 1px rgba(155,93,229,.35);
+}
+.shot img { display: block; width: 358px; border-radius: 23px; background: #000; }
+
+.cap { width: 358px; margin-top: 22px; }
+.cap .num { font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px; color: #7C3AED; }
+.cap h3 { margin: 7px 0 0; font-size: 17px; font-weight: 700; letter-spacing: -.2px; }
+.cap p { margin: 8px 0 0; font-size: 12.5px; line-height: 1.62; color: #9494A6; }
+.cap .spec { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+.spec span {
+  font-family: 'DejaVu Sans Mono', monospace;
+  font-size: 9.5px;
+  padding: 4px 8px; border-radius: 5px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.07);
+  color: #85859A;
+}
+
+.note {
+  margin: 74px auto 0; max-width: 900px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.028);
+  border: 1px solid rgba(255,255,255,.075);
+  padding: 26px 30px;
+}
+.note h4 { font-size: 12px; font-weight: 800; letter-spacing: 1.2px; color: #7C3AED; margin: 0 0 12px; }
+.note p { font-size: 13px; line-height: 1.72; color: #9494A6; margin: 0 0 10px; }
+.note p:last-child { margin-bottom: 0; }
+.note code {
+  font-family: 'DejaVu Sans Mono', monospace;
+  font-size: 11.5px;
+  background: rgba(124,58,237,.14);
+  color: #C4B5FD;
+  padding: 2px 6px; border-radius: 4px;
+}
+
+@media (max-width: 460px) {
+  .wrap { padding: 0 16px; }
+  .grid { grid-template-columns: 1fr; gap: 40px; }
+  .shot img, .cap { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brandline">
+      <img src="ruk-logo.webp" alt="RUK AI">
+      <span class="name">RUK AI</span>
+    </div>
+    <h1>UI/UX Mockups</h1>
+    <p class="sub">
+      Ten screens of the RUK AI Android app, rendered from the real Compose sources in the
+      repository — every label, card, tab and colour is taken from the Kotlin code that ships.
+    </p>
+    <div class="meta">
+      <span class="tag">Kotlin · Jetpack Compose · Material 3</span>
+      <span class="tag">412 × 915 dp @2×</span>
+      <span class="tag dim">10 screens</span>
+      <span class="tag dim">Palette from RukColors.kt</span>
+    </div>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="note">
+    <h4>HOW THESE WERE MADE</h4>
+    <p>
+      The app is a Jetpack Compose project, so it cannot be screenshotted without an Android
+      device or emulator. Instead each screen was rebuilt as a 412 dp HTML layout using the exact
+      strings, card lists and colour constants from the Kotlin sources, then rendered at
+      2× device scale with headless Chromium.
+    </p>
+    <p>
+      Source of truth per screen: <code>HomeScreen.kt</code>, <code>SplashScreen.kt</code>,
+      <code>ChatScreen.kt</code>, <code>ToolsScreen.kt</code> + <code>ToolLibrary.kt</code>,
+      <code>ImageGeneratorScreen.kt</code>, <code>VideoGeneratorScreen.kt</code>,
+      <code>CodeAssistantScreen.kt</code>, <code>PdfAssistantScreen.kt</code>,
+      <code>HistoryScreen.kt</code>, <code>ProfileScreen.kt</code>, plus
+      <code>Routes.kt</code> (bottom tabs) and <code>Color.kt</code> (palette).
+    </p>
+    <p>
+      These are design mockups, not device captures. Where the reference design and the code
+      disagree, the code wins — for example the dashboard uses a two-column card grid because
+      <code>HomeScreen</code> calls <code>cards.chunked(2)</code>, and the profile shows its usage
+      tiles as two rows of two because that is what <code>ProfileScreen</code> composes.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const SHOTS = [
+  ['01-splash', 'Splash', '01-splash.webp',
+   'Animated startup: the atom-and-chat logo scales and fades in over a radial purple glow, followed by the wordmark, the capability line and the eight-icon feature grid.',
+   ['SplashScreen.kt', 'tween(700)', '50+ tools badge']],
+
+  ['02-dashboard', 'Dashboard', '02-dashboard.webp',
+   'The home screen: menu / logo / Pro header, hero with the purple horizon glow, the “Ask anything…” pill, and the six dashboard cards.',
+   ['HomeScreen.kt', 'chunked(2)', '6 cards']],
+
+  ['03-chat', 'AI Chat', '03-chat.webp',
+   'Model pill with the Free badge, a user bubble, and a streaming assistant reply that carries a syntax-highlighted code block plus copy / regenerate actions.',
+   ['ChatScreen.kt', 'gpt-4o-mini', 'streaming']],
+
+  ['04-tools', 'AI Tools library', '04-tools.webp',
+   'The tool library: search field, the five real category chips (All, Writing, Media, Code, Utility) and the tool rows with their accents from ToolLibrary.kt.',
+   ['ToolsScreen.kt', 'ToolCategory', '12 tools']],
+
+  ['05-image-generator', 'Image Generator', '05-image-generator.webp',
+   'Text-to-image: prompt box, aspect-ratio selector with the 1:1 default, quality dropdown, the gradient Generate button and the result with download / share / regenerate.',
+   ['ImageGeneratorScreen.kt', '1:1 default', 'gpt-image-1']],
+
+  ['06-video-generator', 'Video Generator', '06-video-generator.webp',
+   'Text-to-video: prompt, 16:9 aspect ratio, duration stepper, Generate video, then the player with scrubber, progress and “Video ready”.',
+   ['VideoGeneratorScreen.kt', '16:9', '8s clip']],
+
+  ['07-code-assistant', 'Code Assistant', '07-code-assistant.webp',
+   'Language picker (14 languages), line-numbered editor with syntax highlighting, Run Code, and the Explain / Debug / Improve actions above the output pane.',
+   ['CodeAssistantScreen.kt', '14 languages', 'sandbox run']],
+
+  ['08-pdf-assistant', 'PDF Assistant', '08-pdf-assistant.webp',
+   'Upload zone, the loaded document with page count, Summarize document, the question field and an ANSWER panel that cites the pages it drew on.',
+   ['PdfAssistantScreen.kt', '12 pages', 'Q&A']],
+
+  ['09-history', 'History', '09-history.webp',
+   'Chats / Images / Videos tabs and conversation rows showing message count, model and timestamp, each with a delete action.',
+   ['HistoryScreen.kt', '3 tabs', 'delete']],
+
+  ['10-profile', 'Profile', '10-profile.webp',
+   'Avatar, plan badge, the usage tiles (messages today, remaining, images, videos), the purple Upgrade to Pro banner and the settings list down to Sign out.',
+   ['ProfileScreen.kt', 'Free / Pro', 'usage stats']],
+];
+
+document.getElementById('grid').innerHTML = SHOTS.map(([id, title, src, desc, specs]) => `
+  <div class="item">
+    <div class="shot"><img src="${src}" alt="${title}" loading="lazy"></div>
+    <div class="cap">
+      <div class="num">${id.split('-')[0]} — ${title.toUpperCase()}</div>
+      <h3>${title}</h3>
+      <p>${desc}</p>
+      <div class="spec">${specs.map(s => `<span>${s}</span>`).join('')}</div>
+    </div>
+  </div>`).join('');
+</script>
+</body>
+</html>
