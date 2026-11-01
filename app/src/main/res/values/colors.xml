@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand palette: black, dark navy, purple. -->
+    <color name="ruk_black">#FF000000</color>
+    <color name="ruk_navy">#FF0A0E1A</color>
+    <color name="ruk_surface">#FF12121A</color>
+    <color name="ruk_surface_high">#FF1A1A24</color>
+    <color name="ruk_purple">#FF7C3AED</color>
+    <color name="ruk_purple_light">#FF9B5DE5</color>
+    <color name="ruk_purple_deep">#FF4C1D95</color>
+    <color name="ruk_white">#FFFFFFFF</color>
+    <color name="ruk_grey">#FFA0A0A0</color>
+    <color name="ruk_gold">#FFD6AD60</color>
+</resources>

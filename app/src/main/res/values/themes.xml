@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.RukAi" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/ruk_black</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/ruk_black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+    </style>
+
+    <!-- Shown while the process starts, before Compose takes over. -->
+    <style name="Theme.RukAi.Splash" parent="Theme.RukAi">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RUK AI</string>
+    <string name="app_tagline">All-in-One AI Assistant</string>
+    <string name="app_capabilities">Chat \u2022 Create \u2022 Generate \u2022 Code \u2022 Analyze</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_tools">Tools</string>
+    <string name="nav_history">History</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="ask_anything">Ask anything\u2026</string>
+    <string name="pro">Pro</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="upgrade_subtitle">Unlock all AI models, higher limits and premium tools</string>
+    <string name="free_plan">Free Plan</string>
+    <string name="pro_plan">Pro Plan</string>
+
+    <string name="card_chat">AI Chat</string>
+    <string name="card_chat_sub">GPT, Gemini, etc.</string>
+    <string name="card_image">Image Gen</string>
+    <string name="card_image_sub">Create with AI</string>
+    <string name="card_video">Video Gen</string>
+    <string name="card_video_sub">Text to Video</string>
+    <string name="card_code">Code AI</string>
+    <string name="card_code_sub">Write &amp; Debug</string>
+    <string name="card_pdf">PDF Chat</string>
+    <string name="card_pdf_sub">Read &amp; Analyze</string>
+    <string name="card_tools">AI Tools</string>
+    <string name="card_tools_sub">50+ Tools</string>
+
+    <string name="cd_menu">Open menu</string>
+    <string name="cd_send">Send message</string>
+    <string name="cd_mic">Voice input</string>
+    <string name="cd_back">Go back</string>
+    <string name="cd_new_chat">New chat</string>
+    <string name="cd_copy">Copy response</string>
+    <string name="cd_regenerate">Regenerate response</string>
+    <string name="cd_download">Download</string>
+    <string name="cd_share">Share</string>
+    <string name="cd_logo">RUK AI logo</string>
+
+    <string name="error_network">No connection. Check your network and try again.</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="close">Close</string>
+</resources>
