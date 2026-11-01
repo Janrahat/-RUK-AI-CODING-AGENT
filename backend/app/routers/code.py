@@ -84,8 +84,11 @@ async def assist(
             status_code=422, detail="Describe what the code should do."
         )
 
+    # Use the OpenRouter-qualified model id so credentials_for resolves the
+    # user's saved OpenRouter key instead of looking for an OpenAI key.
+    model = "openai/gpt-4o-mini"
     try:
-        creds, _ = await credentials_for(db, user.id, "gpt-4o-mini", None)
+        creds, _ = await credentials_for(db, user.id, model, None)
     except ProviderError as exc:
         raise HTTPException(status_code=exc.status, detail=exc.message) from exc
 
@@ -108,7 +111,7 @@ async def assist(
         {"role": "user", "content": "\n\n".join(parts)},
     ]
     try:
-        answer = await complete_chat(creds, "gpt-4o-mini", messages, max_tokens=3000)
+        answer = await complete_chat(creds, model, messages, max_tokens=3000)
     except ProviderError as exc:
         raise HTTPException(status_code=exc.status, detail=exc.message) from exc
 
@@ -118,5 +121,5 @@ async def assist(
         action=payload.action,
         language=payload.language,
         answer=answer,
-        model="gpt-4o-mini",
+        model=model,
     )
