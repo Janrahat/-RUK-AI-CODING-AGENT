@@ -12,12 +12,19 @@ on:
   pull_request:
     paths:
       - "app/**"
+      - "build.gradle.kts"
+      - "settings.gradle.kts"
   workflow_dispatch:
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     name: Assemble debug APK
     runs-on: ubuntu-latest
+    timeout-minutes: 40
 
     steps:
       - uses: actions/checkout@v4
@@ -29,29 +36,44 @@ jobs:
           java-version: "17"
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v4
+        uses: android-actions/setup-android@v3
+
+      - name: Install SDK platform and build tools
+        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          # The repository ships no gradle-wrapper.jar (a binary), so the
-          # action provides the Gradle distribution instead of ./gradlew.
+          # The repository intentionally ships no gradle-wrapper.jar (a binary),
+          # so the action supplies the Gradle distribution instead of ./gradlew.
           gradle-version: "8.9"
+          cache-read-only: false
 
-      - name: Build debug APK
+      - name: Unit tests
         env:
-          # Supplied as repository secrets. The app never embeds provider
-          # API keys; only the backend URL and the Google client id are
-          # compiled in, and both are safe to expose.
+          RUK_API_BASE_URL: ${{ secrets.RUK_API_BASE_URL }}
+          RUK_GOOGLE_CLIENT_ID: ${{ secrets.RUK_GOOGLE_CLIENT_ID }}
+        run: |
+          gradle --no-daemon testDebugUnitTest \
+            -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g" \
+            -PrukApiBaseUrl="${RUK_API_BASE_URL:-https://api.example.com/}" \
+            -PrukGoogleClientId="${RUK_GOOGLE_CLIENT_ID:-}"
+
+      - name: Assemble debug APK
+        env:
+          # Supplied as repository secrets. The app never embeds provider API
+          # keys — only the backend URL and the Google client id are compiled
+          # in, and both are safe to expose.
           RUK_API_BASE_URL: ${{ secrets.RUK_API_BASE_URL }}
           RUK_GOOGLE_CLIENT_ID: ${{ secrets.RUK_GOOGLE_CLIENT_ID }}
         run: |
           gradle --no-daemon assembleDebug \
+            -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g" \
             -PrukApiBaseUrl="${RUK_API_BASE_URL:-https://api.example.com/}" \
             -PrukGoogleClientId="${RUK_GOOGLE_CLIENT_ID:-}"
 
-      - name: Run unit tests
-        run: gradle --no-daemon testDebugUnitTest
+      - name: Show APK
+        run: ls -lh app/build/outputs/apk/debug/
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
