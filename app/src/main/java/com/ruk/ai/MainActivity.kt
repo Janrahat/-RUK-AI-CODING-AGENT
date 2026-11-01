@@ -177,7 +177,7 @@ private fun RukAiApp() {
             try {
                 val msgs = JSONArray()
                 chatLines.takeLast(30).forEach { msgs.put(JSONObject().put("role", it.role).put("content", it.text)) }
-                val payload = JSONObject().put("model", "openai/gpt-4.1-mini").put("messages", msgs).put("stream", true)
+                val payload = JSONObject().put("model", "openai/gpt-4o-mini").put("messages", msgs).put("stream", true)
                 if (conversationId != null) payload.put("conversation_id", conversationId)
                 val answer = withContext(Dispatchers.IO) {
                     val request = Request.Builder().url(apiBase.trimEnd('/') + "/api/v1/chat/completions")
