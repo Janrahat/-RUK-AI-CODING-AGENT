@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive-icon foreground. The 108dp canvas is drawn inside a 72dp safe zone,
+  because launchers mask and scale the outer ring.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.62"
+        android:scaleY="0.62">
+        <path android:pathData="M20,0 H88 A20,20 0 0 1 108,20 V88 A20,20 0 0 1 88,108 H20 A20,20 0 0 1 0,88 V20 A20,20 0 0 1 20,0 Z">
+            <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:fillColor">
+                <gradient
+                    android:type="linear"
+                    android:startX="0"
+                    android:startY="0"
+                    android:endX="108"
+                    android:endY="108">
+                    <item android:offset="0" android:color="#FF4C1D95" />
+                    <item android:offset="1" android:color="#FF9B5DE5" />
+                </gradient>
+            </aapt:attr>
+        </path>
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M36,76 V32 H58 A13,13 0 0 1 58,58 H48 L64,76 H53 L41,60 H45 V76 Z M45,42 V49 H57 A4,4 0 0 0 57,42 Z" />
+    </group>
+</vector>

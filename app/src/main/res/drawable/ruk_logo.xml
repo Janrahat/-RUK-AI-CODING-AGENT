@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The app mark: a purple "R" monogram inside a rounded square.
+
+  Delivered as a vector, not a PNG, so it stays sharp at every density and the
+  source is reviewable in a diff. Adaptive icons are used from API 26 onward,
+  hence minSdk 24 here (legacy and v26 variants both exist).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Rounded-square body, gradient-filled. -->
+    <path android:pathData="M20,0 H88 A20,20 0 0 1 108,20 V88 A20,20 0 0 1 88,108 H20 A20,20 0 0 1 0,88 V20 A20,20 0 0 1 20,0 Z">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="108"
+                android:endY="108">
+                <item android:offset="0" android:color="#FF4C1D95" />
+                <item android:offset="1" android:color="#FF9B5DE5" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Monogram "R": stem, bowl and leg. -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M36,76 V32 H58 A13,13 0 0 1 58,58 H48 L64,76 H53 L41,60 H45 V76 Z M45,42 V49 H57 A4,4 0 0 0 57,42 Z" />
+</vector>

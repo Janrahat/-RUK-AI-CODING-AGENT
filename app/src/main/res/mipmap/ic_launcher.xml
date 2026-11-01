@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Launcher icon, legacy variant (API 24-25, which have no adaptive icons).
+  All densities are served by this one vector.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/ruk_black" />
+    <item android:drawable="@drawable/ruk_logo" />
+</layer-list>
