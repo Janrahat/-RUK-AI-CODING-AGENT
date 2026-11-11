@@ -35,7 +35,13 @@ private val PANEL = Color(0xFF12182A)
 private val PURPLE = Color(0xFF8B5CF6)
 private val FG = Color(0xFFF4F2FF)
 private val MUTED = Color(0xFFA7A9BC)
-private val http = OkHttpClient.Builder().callTimeout(120, TimeUnit.SECONDS).build()
+private val http = OkHttpClient.Builder()
+    .connectTimeout(30, TimeUnit.SECONDS)
+    .readTimeout(120, TimeUnit.SECONDS)
+    .writeTimeout(30, TimeUnit.SECONDS)
+    .callTimeout(150, TimeUnit.SECONDS)
+    .retryOnConnectionFailure(true)
+    .build()
 private data class Provider(val id: String, val name: String, val configured: Boolean, val model: String)
 private data class ChatMessage(val role: String, val text: String)
 
@@ -93,6 +99,8 @@ private fun RukAiApp() {
             } catch (e: Exception) { status = "Connection failed: ${e.message}" }
         }
     }
+
+    LaunchedEffect(Unit) { refreshProviders() }
 
     fun send() {
         val text = input.trim()
