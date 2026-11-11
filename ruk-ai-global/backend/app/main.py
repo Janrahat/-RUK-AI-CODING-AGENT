@@ -105,7 +105,7 @@ async def chat(body: ChatRequest):
                 response = await client.post(
                     f"{base_url}/chat/completions",
                     headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-                    json={"model": model, "messages": conversation, "temperature": 0.7},
+                    json={"model": model, "messages": conversation, "temperature": 0.7, "max_tokens": 1024},
                 )
                 response.raise_for_status()
                 data = response.json()
